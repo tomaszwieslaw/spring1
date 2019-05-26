@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:util="http://www.springframework.org/schema/util"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans-4.0.xsd
+        http://www.springframework.org/schema/context
+        http://www.springframework.org/schema/context/spring-context-4.0.xsd
+        http://www.springframework.org/schema/util
+        http://www.springframework.org/schema/util/spring-util-4.0.xsd">
+
+    <bean id="message" class="pl.sda.Message" scope="prototype">
+        <property name="text" value="wartość startowa"/>
+    </bean>
+
+    <bean id = "extramessage" class="pl.sda.ExtraMessage">
+        <property name="value" value="Hello test!"/>
+    </bean>
+
+    <bean id = "message2" class="pl.sda.Message" scope="prototype">
+        <property name="text" value="Hello!!!"/>
+    </bean>
+
+    <bean id = "message3" class="pl.sda.Message" init-method="init">
+        <property name="text" value="Hello!!!"/>
+    </bean>
+
+    <bean id = "message4" class="pl.sda.Message" destroy-method="destroy">
+        <property name="text" value="Hello!!!"/>
+    </bean>
+
+    <bean id = "student1" class="pl.sda.Student">
+        <property name="firstName" value="Hello Student!"/>
+    </bean>
+
+
+    <bean id="author" class="pl.sda.Author">
+        <property name="firstName" value="Marcin"/>
+        <property name="lastName" value="Nowak"/>
+    </bean>
+
+    <bean id="book1" class="pl.sda.Book">
+        <property name="title" value="Harry Potter"/>
+        <property name="author" value="author1"/>
+    </bean>
+
+    <bean id="book2" class="pl.sda.Book">
+        <property name="title" value="Nowa książka"/>
+        <property name="author">
+        <bean id="author" class="pl.sda.Author">
+            <property name="firstName" value="Katarzyna"/>
+            <property name="lastName" value="Podlaska"/>
+        </bean></property>
+    </bean>
+
+    <bean id="address1" class="pl.sda.Address">
+        <property name="city" value="Bialystok"/>
+    </bean>
+
+    <bean id="person1" class="pl.sda.Person">
+        <constructor-arg  ref="address1"/>
+    </bean>
+
+    <bean id="napis" class="java.lang.String">
+        <constructor-arg value="908080"/>
+    </bean>
+
+    <util:list id="mojaLista" value-type="java.lang.String">
+        <value>foo</value>
+        <value>boo</value>
+    </util:list>
+
+
+
+    <context:annotation-config/>
+
+
+</beans>
